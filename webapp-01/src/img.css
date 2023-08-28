@@ -1,0 +1,6 @@
+.icon {
+  max-width: 1.4rem;
+  width: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}

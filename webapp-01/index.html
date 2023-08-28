@@ -1,0 +1,202 @@
+<!-- Lang is used when browser and screen readers shows errors and reads the info -->
+
+<html lang="no">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="./src/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starter</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- To start with this is not fully implemented, but will in the final product -->
+    <nav>
+      <button class="success">Publish</button>
+      <button class="outline">Exit</button>
+    </nav>
+    <!-- Main is the tag used to hold the main content -->
+    <main class="layout">
+      <!-- Content in the main but that is not part of the "main"-flow -->
+      <aside id="panel-left" class="panel panel-left">
+        <!-- Ordered list - since the order is used to display the order of the questions -->
+        <ol>
+          <!-- This is the startscreen for the survey. Position can not be changed -->
+          <li data-pos="1"><span>1</span><span>Start</span>
+          </li>
+          <!-- data-pos or similar can be used to get the position of the item, ex. when dragging -->
+          <!-- There is others ways, but this is one option -->
+          <!-- draggable="true" is needed when we want to use the browser drag api -->
+          <li draggable="true" data-pos="2"><span>2</span><span>Title ... (text)</span><img src="arrow-up-down.svg"
+              class="icon icon-order" alt="arrow pointing up and down for ordering" />
+          </li>
+          <!-- isDragging class is used to simulate what will happen when sorting elements -->
+          <li draggable="true" class="isDragging" data-pos="3"><span>3</span><span>Title 2 ... (text)</span><img
+              src="arrow-up-down.svg" class="icon icon-order" alt="arrow pointing up and down for ordering" />
+          </li>
+          <li draggable="true" data-pos="4"><span>4</span><span>Title 3 ... (text)</span><img src="arrow-up-down.svg"
+              class="icon icon-order" alt="arrow pointing up and down for ordering" />
+          </li>
+          <!-- This is the endscreen for the survey. Position can not be changed -->
+          <li data-pos="5"><span>5</span><span>End</span>
+        </ol>
+      </aside>
+      <!-- section wrapping the questions -->
+      <section class="form-create">
+        <div class="wrapper">
+          <!-- method=POST to post the formdata as form-body -->
+          <form method="POST" action="/">
+            <section class="question-card">
+              <!-- section used to wrap buttons used to order the question up or down -->
+              <div class="ordering"><button type="button" class="outline"><img src="up.svg" alt="Up arrow to order up"
+                    class="icon" /><span>Up</span></button><button type="button" class="outline"><img
+                    alt="Down arrow to order down" src="down.svg" class="icon" /><span>Down</span></button></div>
+              <div class="wrapper">
+                <div class="question">
+                  <div class="number">1</div>
+                  <div class="title field">
+                    <!-- label describes what is needed in the input -->
+                    <!-- having the label separate (not grouping the input) is cleaner and prevents confusion for screen readers -->
+                    <!-- for <=> id on input -->
+                    <label for="title">Title
+                      <!-- Hidden by screen readers since it does not give any context -->
+                      <!-- Required is enough to tell the screen reader that this must be filled out -->
+                      <span aria-hidden="true">*</span>
+                    </label>
+                    <!-- name is used when retrieving form fields and their value -->
+                    <!-- name is also used to match errors wil the field name -->
+                    <!-- aria-required makes this semantically required but noe validation -->
+                    <!-- adds aria-invalid to tell the reader that this field is invalid on focus -->
+                    <!-- adds multiple describedby to be able to have different messages for error and hint -->
+                    <input type="text" name="title" id="title" placeholder="Your question" aria-required="true"
+                      aria-invalid="true" aria-describedby="titleError titleHint" />
+                    <span class="field-hint">
+                      <!-- Uses aria-live="assertive" to tell the reader immediately after interaction if an error is shown -->
+                      <!-- By default screen readers do not address changes on aria-describedby -->
+                      <!-- Error is added by javascript -->
+                      <span class="field-error" id="titleError" aria-live="assertive"></span>
+                      <!-- Connected to aria-describedby. Can be hidden from all but is still accessed when navigated to due to aria -->
+                      <span id="titleHint" hidden>Title is necessary for the question</span>
+                    </span>
+                  </div>
+                  <div class="description field">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" placeholder="Description (optional)" />
+                  </div>
+                  <div class="answer field">
+                    <label for="answer">Answer</label>
+                    <input type="text" name="answer" id="answer" placeholder="Type your answer here (generic)"
+                      disabled />
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="question-card">
+              <!-- section used to wrap buttons used to order the question up or down -->
+              <div class="ordering"><button type="button" class="outline"><img src="up.svg" alt="Up arrow to order up"
+                    class="icon" /><span>Up</span></button><button type="button" class="outline"><img
+                    alt="Down arrow to order down" src="down.svg" class="icon" /><span>Down</span></button></div>
+              <div class="wrapper">
+                <div class="question">
+                  <div class="number">2</div>
+                  <div class="title field">
+                    <!-- label describes what is needed in the input -->
+                    <!-- having the label separate (not grouping the input) is cleaner and prevents confusion for screen readers -->
+                    <!-- for <=> id on input -->
+                    <label for="title">Title
+                      <!-- Hidden by screen readers since it does not give any context -->
+                      <!-- Required is enough to tell the screen reader that this must be filled out -->
+                      <span aria-hidden="true">*</span>
+                    </label>
+                    <!-- name is used when retrieving form fields and their value -->
+                    <!-- name is also used to match errors wil the field name -->
+                    <!-- aria-required makes this semantically required but noe validation -->
+                    <!-- adds aria-invalid to tell the reader that this field is invalid on focus -->
+                    <!-- adds multiple describedby to be able to have different messages for error and hint -->
+                    <input type="text" name="title" id="title" placeholder="Your question" aria-required="true"
+                      aria-invalid="true" aria-describedby="titleError titleHint" />
+                    <span class="field-hint">
+                      <!-- Uses aria-live="assertive" to tell the reader immediately after interaction if an error is shown -->
+                      <!-- By default screen readers do not address changes on aria-describedby -->
+                      <!-- Error is added by javascript -->
+                      <span class="field-error" id="titleError" aria-live="assertive"></span>
+                      <!-- Connected to aria-describedby. Can be hidden from all but is still accessed when navigated to due to aria -->
+                      <span id="titleHint" hidden>Title is necessary for the question</span>
+                    </span>
+                  </div>
+                  <div class="description field">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" placeholder="Description (optional)" />
+                  </div>
+                  <div class="answer field">
+                    <label for="answer">Answer</label>
+                    <input type="text" name="answer" id="answer" placeholder="Type your answer here (generic)"
+                      disabled />
+                  </div>
+                </div>
+              </div>
+            </section>
+            <button type="button" class="outline">Add question</button>
+
+            <div>
+              <!-- Default button is used to submit -->
+              <!-- type="button" prevent this -->
+              <!-- Google recommends that the buttons i active until the form is sendt. Then it can be made disabled -->
+              <button id="submit" class="success">Save</button>
+              <!-- If long forms it may be good to summarize the errors -->
+              <div class="form-feedback">
+                <!-- Must use aria-live to let screen readers know about the errors -->
+                <p class="form-feedback-sr sr-only" aria-live="assertive">
+                  <!-- js -->
+                </p>
+                <!-- To prevent screen reader to get all the visual updates we hide it with aria-hidden true -->
+                <p class="form-feedback-msg" aria-hidden="true"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </section>
+      <!-- Content in the main but that is not part of the "main"-flow -->
+      <aside id="panel-right" class="panel panel-right">
+        <div class="field">
+          <label for="type">Type</label>
+          <select id="type" name="type">
+            <!-- Will be preselected to the given question type -->
+            <!-- When creating a new question it will default to text -->
+            <option value="text">Text</option>
+            <option value="true-false">Yes / No</option>
+            <option value="multiple">Multiple</option>
+          </select>
+        </div>
+        <!-- Used to update the field-type and settings on a given question -->
+        <!-- Below are examples -->
+        <section>
+          <h4>Settings</h4>
+          <div class="field row">
+            <input type="checkbox" name="required" id="required" />
+            <label for="required">Required</label>
+          </div>
+          <div class="field row">
+            <input type="checkbox" name="max" id="max" />
+            <label for="max">Max length</label>
+          </div>
+          <!-- Will be hidden when functionality is added -->
+          <div class="field">
+            <label for="max-length">Max length</label>
+            <input type="text" name="max-length" id="max-length" />
+          </div>
+          <!-- Used to delete a specific question -->
+          <button class="error">Delete</button>
+        </section>
+      </aside>
+    </main>
+    <footer>Footer goes here <button class="outline">Save</button>
+    </footer>
+  </div>
+  <script src="./src/main.js"></script>
+</body>
+
+</html>

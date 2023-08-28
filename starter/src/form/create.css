@@ -1,0 +1,120 @@
+.form-create {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border-left: 1px solid var(--slate-200);
+  border-right: 1px solid var(--slate-200);
+  background-color: var(--slate-100);
+  padding: 3rem;
+}
+
+.wrapper {
+  :where(.form-create) & {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    /* align-items: center; */
+
+    & form {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 2rem;
+      height: 100%;
+    }
+  }
+}
+
+.question-card {
+  :where(.form-create) & {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: clamp(256px, 100%, 512px);
+    aspect-ratio: 16 / 9; */
+    width: 100%;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+  }
+}
+
+.question {
+  :where(.form-create) & {
+    display: grid;
+    grid-template-columns: max-content auto;
+    padding: 3rem;
+    width: 100%;
+
+    & .answer {
+      width: 100%;
+      position: relative;
+      grid-column-start: 2;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & input {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        padding-bottom: 0.125rem;
+        padding: 0.25rem;
+        background-color: transparent;
+        border-width: 0;
+        border-color: var(--slate-200);
+        border-bottom-width: 1px;
+        width: 100%;
+        &:disabled {
+          cursor: default;
+        }
+      }
+    }
+
+    & input {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      border-width: 0;
+      width: 100%;
+      appearance: none;
+      background-color: #fff;
+      border-color: #6b7280;
+      border-radius: 0;
+      padding: 0.5rem 0.75rem;
+      &::placeholder {
+        font-weight: 300;
+        color: var(--slate-300);
+        font-style: italic;
+      }
+    }
+
+    & .number {
+      margin-right: 0.5rem;
+    }
+
+    & .title {
+      position: relative;
+      & input {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+      }
+    }
+
+    & .description {
+      margin-top: 0.25rem;
+      grid-column-start: 2;
+
+      & input {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        font-weight: 300;
+        border-width: 0;
+      }
+    }
+  }
+}

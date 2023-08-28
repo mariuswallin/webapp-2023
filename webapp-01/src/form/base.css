@@ -1,0 +1,67 @@
+.field {
+  /* Label on top of field is recommended */
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  & label {
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  & input:not([type='checkbox']),
+  & textarea,
+  & select,
+  & fieldset,
+  & legend {
+    font-size: 1.2rem;
+    border-radius: 0.4rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid;
+    accent-color: var(--theme);
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    -ms-border-radius: 0.4rem;
+    -o-border-radius: 0.4rem;
+  }
+
+  & input[type='checkbox'] {
+    width: fit-content;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    text-align: left;
+    border: 1px solid blue;
+    accent-color: var(--theme);
+  }
+
+  &.row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  & input:focus-visible {
+    outline: 2px dashed rgb(52, 73, 158);
+  }
+
+  & .field-error {
+    color: var(--error);
+  }
+}
+
+& .form-feedback-msg {
+  &.isInvalid {
+    border-left: 4px solid var(--error);
+    margin-bottom: 16px;
+    background-color: #fbe9e9;
+    border-radius: 0 4px 4px 0;
+    padding: 4px 6px;
+  }
+
+  &.isSuccess {
+    border-left: 4px solid #10b042;
+    margin-bottom: 16px;
+    background-color: #e8fdee;
+    border-radius: 0 4px 4px 0;
+    padding: 4px 6px;
+  }
+}

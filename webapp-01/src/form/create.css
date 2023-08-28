@@ -1,0 +1,152 @@
+.form-create {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border-left: 1px solid var(--slate-200);
+  border-right: 1px solid var(--slate-200);
+  background-color: var(--slate-100);
+  padding: 3rem;
+}
+
+.wrapper {
+  /* Only added styles to .wrapper if parent is .form-create */
+  :where(.form-create) & {
+    display: flex;
+    height: auto;
+    justify-content: center;
+
+    /* align-items: center; */
+    /* One colum is recommended - Achieved by flex-direction */
+
+    & form {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 2rem;
+      height: 100%;
+    }
+  }
+}
+
+.question-card {
+  max-width: 790px;
+  width: 100%;
+  margin: 0 auto;
+  cursor: pointer;
+  /* height: clamp(256px, 100%, 512px);
+     */
+  padding: 2rem;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+  :where(.form-create) & {
+    & .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    & .ordering {
+      display: flex;
+      gap: 1rem;
+      justify-content: end;
+
+      & button {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.question {
+  :where(.form-create) & {
+    display: grid;
+    grid-template-columns: max-content auto;
+    width: 100%;
+
+    & .answer {
+      width: 100%;
+      position: relative;
+      grid-column-start: 2;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & input {
+        /* By default use at least 16px (normally 1 rem or else the browser zooms) */
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        padding-bottom: 0.125rem;
+        padding: 0.25rem;
+        background-color: transparent;
+        border-width: 0;
+        border-color: var(--slate-200);
+        border-bottom-width: 1px;
+        width: 100%;
+        &:disabled {
+          cursor: default;
+        }
+      }
+    }
+
+    & input {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      border-width: 0;
+      width: 100%;
+      appearance: none;
+      background-color: #fff;
+      border-color: #6b7280;
+      border-radius: 0;
+      padding: 0.5rem 0.75rem;
+
+      &::placeholder {
+        font-weight: 300;
+        color: var(--slate-300);
+        font-style: italic;
+      }
+    }
+
+    & .number {
+      margin-right: 0.5rem;
+    }
+
+    & .title {
+      position: relative;
+      margin-bottom: 2rem;
+
+      & input {
+        font-weight: 700;
+        border-width: 0;
+        font-size: 1.2rem;
+        line-height: 1.75rem;
+        margin-left: -0.5rem;
+      }
+    }
+
+    & .description {
+      grid-column-start: 2;
+
+      & input {
+        font-weight: 300;
+        border-width: 0;
+        font-size: 1rem;
+        margin-left: -0.5rem;
+      }
+    }
+  }
+}

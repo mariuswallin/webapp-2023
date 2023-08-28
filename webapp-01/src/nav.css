@@ -1,0 +1,18 @@
+nav {
+  background-color: var(--theme);
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  min-height: 4rem;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+
+  & button:last-of-type {
+    color: white;
+    border-color: white;
+  }
+}

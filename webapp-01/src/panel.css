@@ -1,0 +1,81 @@
+/* panel.css */
+.panel {
+  width: 0;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  transition: all;
+  -webkit-transition: all;
+  -moz-transition: all;
+  -ms-transition: all;
+  -o-transition: all;
+  overflow-x: hidden;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 1rem;
+  width: 24rem;
+  min-width: 24rem;
+  /* glued to to top when scrolling */
+  position: sticky;
+  top: 0;
+
+  &.open {
+    /* class that will be added when the panel is open (not in use now) */
+  }
+
+  &.panel-left {
+    /* if element is ol */
+    /* better example is this */
+    /* 3-deep (or more) unordered lists use a square 
+			:is(ol, ul, menu, dir) :is(ol, ul, menu, dir) :is(ul, menu, dir) {
+			  list-style-type: square;
+				https://developer.mozilla.org/en-US/docs/Web/CSS/:is
+			} */
+    :is(ol) {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 2rem;
+      padding-left: 0;
+
+      & li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.4rem;
+
+        & span:nth-of-type(2) {
+          display: block;
+          flex-grow: 1;
+        }
+      }
+
+      /* If the list-items has children with .icon-order use this class on the li-element */
+      & li:has(.icon-order) {
+        &:hover {
+          cursor: grab;
+        }
+
+        &.isDragging {
+          cursor: grabbing;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  &.panel-right {
+    & h4 {
+      margin: 0;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    & section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+/* button.css */
+/* Layer is used to add specificity to the CSS, see why on next section */
+@layer button {
+  /* Button should look like a button */
+
+  button {
+    max-width: fit-content;
+    border: none;
+    background-color: var(--blue);
+    border-radius: 0.2rem;
+    padding: 0.6rem 1rem;
+    font-weight: 400;
+    margin: 1rem 0;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+
+    &.error {
+      background-color: var(--error);
+      color: white;
+    }
+
+    &.warning {
+      background-color: var(--warning);
+      color: white;
+    }
+
+    &.success {
+      background-color: var(--success);
+    }
+
+    &.outline {
+      border: 1px solid var(--box-border);
+      background-color: transparent;
+    }
+
+    /* styling the disabled button */
+    &:disabled {
+      opacity: 0.4;
+    }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+}

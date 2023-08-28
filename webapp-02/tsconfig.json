@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "allowJs": true,
+    "checkJs": true,
+    "paths": {
+      "@utils/*": [
+        "./src/shared/utils/*"
+      ],
+      "@features/*": [
+        "./src/features/*"
+      ],
+      "@types": [
+        "./src/types"
+      ],
+      "@src/*": [
+        "./src/*"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.ts",
+    ".eslintrc.js",
+    "."
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

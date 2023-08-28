@@ -1,0 +1,55 @@
+<html lang="no">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="./src/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starter</title>
+</head>
+
+<body>
+  <div id="app">
+    <nav class="sticky top-0 flex w-full border justify-end gap-4 py-2 px-4 bg-purple-700 z-10">
+      <button id="publish" class="bg-green-300 font-light px-6 py-3 rounded">Publish</button>
+      <button id="exit" class="border text-white font-light px-6 py-3 rounded">Exit</button>
+    </nav>
+    <main class="grid grid-cols-1 lg:grid-cols-[320px_1fr_320px] bg-slate-200 min-h-screen">
+      <aside id="panel-left" class="w-full lg:max-w-xs shadow-lg bg-white flex flex-col p-4">
+        <div class="sticky top-20 mt-8 flex flex-col gap-3">
+          <h4 class="font-bold">Questions</h4>
+          <ol id="question-list" class="flex flex-col gap-3 pl-0">
+            <li data-pos="start" id="start"
+              class="flex justify-between items-center gap-2 [&>span:nth-of-type(2)]:block [&>span:nth-of-type(2)]:grow">
+              <span>Start screen</span>
+            </li>
+            <li data-pos="end" id="end"
+              class="flex justify-between items-center gap-2 [&>span:nth-of-type(2)]:block [&>span:nth-of-type(2)]:grow">
+              <span>End screen</span>
+          </ol>
+        </div>
+      </aside>
+      <section class="flex w-full flex-col border-l border-r border-slate-200 p-12 sm:max-2xl:max-w-xl mx-auto">
+        <div class="flex h-auto justify-center">
+          <form id="question-form" method="POST" action="/" class="m-0 flex flex-col w-full items-center gap-8 h-full">
+            <button type="button" id="add"
+              class="w-full text-center py-6 border border-dashed border-black max-w-3xl transition-shadow duration-300 ease-in-out hover:shadow-lg">Add
+              question</button>
+            <div class="self-start">
+              <button id="submit" class="bg-green-300 font-light px-6 py-3 rounded ">Save</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <aside id="panel-right" class="w-full lg:max-w-xs shadow-lg bg-white flex flex-col p-4">
+      </aside>
+    </main>
+    <footer class="sticky bottom-0 flex w-full border justify-end items-center gap-4 py-2 px-4 bg-slate-500 z-10">
+      <span class="text-white">Footer content goes here</span>
+      <button id="save" class="bg-slate-800 font-light px-6 py-3 rounded text-white">Save</button>
+    </footer>
+  </div>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+
+</html>

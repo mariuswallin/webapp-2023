@@ -1,0 +1,60 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  & label {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  & input:not([type='checkbox']),
+  & textarea,
+  & select,
+  & fieldset,
+  & legend {
+    /* By default use at least 16px (normally 1 rem or else the browser zooms) */
+    font-size: 1.6rem;
+    border-radius: 0.2rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid;
+    /* Adds a small border left of the input */
+    border-inline-start-width: 4px;
+    /* Sets the color theme on radio, checkboxes etc */
+    accent-color: teal;
+  }
+
+  & input[type='checkbox'] {
+    width: fit-content;
+    min-width: 2rem;
+    height: 2rem;
+    text-align: left;
+    border: 1px solid blue;
+  }
+
+  & input:focus-visible {
+    outline: 4px dashed orange;
+  }
+
+  & .field-error {
+    color: var(--error);
+  }
+}
+
+& .form-feedback-msg {
+  &.isInvalid {
+    border-left: 4px solid var(--error);
+    margin-bottom: 16px;
+    background-color: #fbe9e9;
+    border-radius: 0 4px 4px 0;
+    padding: 4px 6px;
+  }
+
+  &.isSuccess {
+    border-left: 4px solid #10b042;
+    margin-bottom: 16px;
+    background-color: #e8fdee;
+    border-radius: 0 4px 4px 0;
+    padding: 4px 6px;
+  }
+}

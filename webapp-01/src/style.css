@@ -1,0 +1,9 @@
+@import url('reset.css');
+@import url('base.css');
+@import url('nav.css');
+@import url('footer.css');
+@import url('panel.css');
+@import url('./img.css');
+@import url('./button.css');
+@import url('./form/base.css');
+@import url('./form/create.css');
