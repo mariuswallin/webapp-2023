@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "predev": "prisma generate && prisma db push && pnpm run seed",
+    "__predev": "prisma generate && prisma db push && pnpm run seed",
     "db:generate": "prisma generate",
     "dev": "next dev",
     "e2e": "playwright test",
@@ -21,7 +21,7 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "postinstall": "prisma generate"
+    "__postinstall": "prisma generate"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.7.0",

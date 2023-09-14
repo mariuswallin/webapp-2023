@@ -1,8 +1,8 @@
 import { calcAverageScore, calcAverageScoreByKey } from "./calcAverage"
 import { Response } from "./types"
 
-describe.only("Calculate averages", () => {
-  it("should calculate average by category", () => {
+describe("Calc Averages", () => {
+  it("should calculate average", () => {
     const responses = new Map<string, Response>([
       [
         "response-1",
@@ -36,9 +36,9 @@ describe.only("Calculate averages", () => {
       ],
     ])
     const averages = calcAverageScore(responses)
-    expect(averages["one"].sum).toBe(5)
-    expect(averages["one"].count).toBe(2)
-    expect(averages["one"].average).toBe(2.5)
+    expect(averages?.["one"].sum).toBe(5)
+    expect(averages?.["one"].count).toBe(2)
+    expect(averages?.["one"].average).toBe(2.5)
   })
   it("should calculate average by questionId", () => {
     const responses = new Map<string, Response>([
@@ -79,27 +79,27 @@ describe.only("Calculate averages", () => {
     const averagesByCategory = calcAverageScoreByKey(responses, "category")
 
     // By questionId
-    expect(averagesByQuestionId["1"].sum).toBe(3)
-    expect(averagesByQuestionId["1"].count).toBe(1)
-    expect(averagesByQuestionId["1"].average).toBe(3)
-    expect(averagesByQuestionId["1"].groupKey).toBe("questionId")
-    expect(averagesByQuestionId["1"].groupValue).toBe("1")
-    expect(averagesByQuestionId["2"].sum).toBe(4)
-    expect(averagesByQuestionId["2"].count).toBe(2)
-    expect(averagesByQuestionId["2"].average).toBe(2)
+    expect(averagesByQuestionId?.["1"].sum).toBe(3)
+    expect(averagesByQuestionId?.["1"].count).toBe(1)
+    expect(averagesByQuestionId?.["1"].average).toBe(3)
+    expect(averagesByQuestionId?.["1"].groupKey).toBe("questionId")
+    expect(averagesByQuestionId?.["1"].groupValue).toBe("1")
+    expect(averagesByQuestionId?.["2"].sum).toBe(4)
+    expect(averagesByQuestionId?.["2"].count).toBe(2)
+    expect(averagesByQuestionId?.["2"].average).toBe(2)
 
     // By score
-    expect(averagesByScore[2].sum).toBe(4)
-    expect(averagesByScore[2].count).toBe(2)
-    expect(averagesByScore[2].average).toBe(2)
-    expect(averagesByScore[2].groupKey).toBe("score")
-    expect(averagesByScore[2].groupValue).toBe(2)
+    expect(averagesByScore?.["2"].sum).toBe(4)
+    expect(averagesByScore?.["2"].count).toBe(2)
+    expect(averagesByScore?.["2"].average).toBe(2)
+    expect(averagesByScore?.["2"].groupKey).toBe("score")
+    expect(averagesByScore?.["2"].groupValue).toBe(2)
 
     // By category
-    expect(averagesByCategory["two"].sum).toBe(2)
-    expect(averagesByCategory["two"].count).toBe(1)
-    expect(averagesByCategory["two"].average).toBe(2)
-    expect(averagesByCategory["two"].groupKey).toBe("category")
-    expect(averagesByCategory["two"].groupValue).toBe("two")
+    expect(averagesByCategory?.["two"].sum).toBe(2)
+    expect(averagesByCategory?.["two"].count).toBe(1)
+    expect(averagesByCategory?.["two"].average).toBe(2)
+    expect(averagesByCategory?.["two"].groupKey).toBe("category")
+    expect(averagesByCategory?.["two"].groupValue).toBe("two")
   })
 })
