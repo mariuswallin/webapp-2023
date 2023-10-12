@@ -28,7 +28,7 @@ export function MultiSurveyWithContext({
   return (
     <QuestionProvider url={url} initialQuestions={questions}>
       {/* The AnswerProvider is nested inside the QuestionProvider to provide answers to questions. */}
-      {/* At what leves this is places affects amount of re-renders */}
+      {/* The placement of this affects amount of re-renders */}
       <AnswerProvider url={url}>
         {/* The SurveyForm component is the main form container for the survey. */}
         <SurveyForm onSubmit={onSubmit}>
