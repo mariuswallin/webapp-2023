@@ -28,7 +28,7 @@ export function SurveyAnswers() {
           </div>
         ))}
       </fieldset>
-      {/* A simple way to show what has been selected */}
+      {/* A simple way to show what has been selected (for debugging) */}
       <section className="rounded border px-4 py-6">
         <h5 className="my-3 mt-12 font-bold">Dine svar er: </h5>
         <ul className="mt-2">

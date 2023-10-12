@@ -24,7 +24,7 @@ const QuestionContext = createContext<QuestionContextType | undefined>(
 // A React component called 'QuestionProvider' responsible for providing question-related data and functionality to its children.
 export const QuestionProvider = (props: {
   children: ReactNode
-  url: string // The URL for fetching questions.
+  url: string // The URL for fetching questions (not really needed)
   initialQuestions?: Question[] // An optional initial set of questions.
 }) => {
   // Destructure the properties from the 'props' object.
@@ -46,7 +46,7 @@ export const QuestionProvider = (props: {
   // Create the 'value' object with the properties to be provided via the context.
   const value = {
     getQuestions,
-    stepper: handleStep,
+    stepper: handleStep, // Remap handleStep to stepper
     currentQuestion,
     questions,
     isFinalQuestion,

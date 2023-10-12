@@ -21,6 +21,7 @@ const AnswerContext = createContext<AnswerContextType | undefined>(undefined)
 
 export const AnswerProvider = (props: { children: ReactNode; url: string }) => {
   const { children, url } = props
+
   const [status, setStatus] = useState<Status>("idle")
   const [result, setResult] = useState<unknown>(undefined)
   const isLoading = status === "loading"

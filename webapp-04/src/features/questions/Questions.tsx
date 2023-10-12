@@ -14,7 +14,7 @@ export default function Questions({ questions }: { questions: Question[] }) {
 
   return (
     <section className="mx-auto mt-10 max-w-lg">
-      <h1>Oppgaver</h1>
+      <h1 className="text-2xl font-bold">Oppgaver</h1>
       {/* <MultiSurvey onSubmit={onSubmit} questions={questions} /> */}
       <MultiSurveyWithContext onSubmit={onSubmit} questions={questions} />
     </section>

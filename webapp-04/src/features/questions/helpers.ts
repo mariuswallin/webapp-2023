@@ -39,6 +39,7 @@ export const createSurveyResponse = async (
 }
 
 // A function named 'Survey' that returns an object with 'get' and 'post' methods.
+// Url could be left out and hardcoded
 export const Survey = (url: string) => {
   return {
     // 'get' method is used to fetch questions from the specified URL using the 'getQuestions' function.
