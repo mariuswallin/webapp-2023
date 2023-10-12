@@ -1,0 +1,20 @@
+"use client"
+
+import { Survey } from "./helpers"
+import { MultiSurveyWithContext } from "./MultiSurveyWithContext"
+import { type Question } from "./types"
+
+export default function Questions({ questions }: { questions: Question[] }) {
+  async function onSubmit(data: Record<string, string | string[]>) {
+    console.log(data)
+    await Survey("http://localhost:3000/api/questions").post(data)
+  }
+
+  return (
+    <section className="mx-auto mt-10 max-w-lg">
+      <h1>Oppgaver</h1>
+      {/* <MultiSurvey onSubmit={onSubmit} questions={questions} /> */}
+      <MultiSurveyWithContext onSubmit={onSubmit} questions={questions} />
+    </section>
+  )
+}
