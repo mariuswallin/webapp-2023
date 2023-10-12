@@ -13,6 +13,8 @@ type AnswerContextType = {
   isError: boolean
   isSuccess: boolean
   status: Status
+  result: unknown
+  postResponses: (body: Record<string, string | string[]>) => Promise<unknown>
 }
 
 const AnswerContext = createContext<AnswerContextType | undefined>(undefined)
@@ -20,16 +22,18 @@ const AnswerContext = createContext<AnswerContextType | undefined>(undefined)
 export const AnswerProvider = (props: { children: ReactNode; url: string }) => {
   const { children, url } = props
   const [status, setStatus] = useState<Status>("idle")
+  const [result, setResult] = useState<unknown>(undefined)
   const isLoading = status === "loading"
   const isError = status === "error"
   const isSuccess = status === "success"
 
   const { handleSelect, responses } = useAnswer()
 
-  const postResponses = async (body: Record<string, string>) => {
+  const postResponses = async (body: Record<string, string | string[]>) => {
     try {
       setStatus("loading")
-      await Survey(url).post(body)
+      const result = await Survey(url).post(body)
+      setResult(result)
       setStatus("success")
     } catch (error) {
       setStatus("error")
@@ -48,6 +52,7 @@ export const AnswerProvider = (props: { children: ReactNode; url: string }) => {
     isError,
     isSuccess,
     status,
+    result,
   }
 
   return (

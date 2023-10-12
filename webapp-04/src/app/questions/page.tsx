@@ -7,8 +7,9 @@ import { type Question } from "@/features/questions/types" // Importing the Ques
 export default async function QuestionsPage() {
   // Use the 'await' keyword to fetch data from a remote server (an API) at this URL.
   // This URL appears to be a local development server since it's using 'http://localhost:3000'.
+  console.log(process.env.NEXT_PUBLIC_PORT)
   const questions = (await Survey(
-    "http://localhost:3000/api/questions",
+    `http://localhost:${process.env.NEXT_PUBLIC_PORT ?? 3000}/api/questions`,
   ).get()) as Question[]
 
   // The fetched data is expected to be an array of 'Question' objects.

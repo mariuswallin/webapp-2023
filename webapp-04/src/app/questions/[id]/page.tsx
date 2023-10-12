@@ -1,12 +1,17 @@
 import React from "react"
 
-// An asynchronous function that fetches a challenge/question by its ID.
-const getChallenge = async (id: string) => {
+// An asynchronous function that fetches a question by its ID.
+const getQuestion = async (id: string) => {
   try {
     // Send a GET request to the specified API endpoint using the provided ID.
-    const response = await fetch(`http://localhost:3000/api/questions/${id}`, {
-      method: "get",
-    })
+    const response = await fetch(
+      `http://localhost:${
+        process.env.NEXT_PUBLIC_PORT ?? 3000
+      }/api/questions/${id}`,
+      {
+        method: "get",
+      },
+    )
     // Parse the response data as JSON and return it.
     const result = await response.json()
     return result
@@ -16,20 +21,20 @@ const getChallenge = async (id: string) => {
   }
 }
 
-// This is the main component for displaying a single question/challenge.
+// This is the main component for displaying a single question.
 export default async function QuestionPage({
   params,
 }: {
   params: { id: string }
 }) {
-  // Call the 'getChallenge' function to fetch the challenge/question based on the 'id' parameter.
-  const challenge = await getChallenge(params.id)
+  // Call the 'getQuestion' function to fetch the question based on the 'id' parameter.
+  const question = await getQuestion(params.id)
 
   return (
-    // Render the question/challenge and its parameters as JSON data.
+    // Render the question and its parameters as JSON data.
     <section>
       <p>{JSON.stringify(params)}</p>
-      <p>{JSON.stringify(challenge)}</p>
+      <p>{JSON.stringify(question)}</p>
     </section>
   )
 }

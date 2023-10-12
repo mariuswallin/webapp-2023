@@ -1,11 +1,11 @@
 import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 
-type DummyData = { id: string; challenge: number }
+type DummyData = { id: string; question: string }
 
 let data: DummyData[] = [
-  { id: "123", challenge: 1 },
-  { id: "234", challenge: 2 },
+  { id: "123", question: "q1" },
+  { id: "234", question: "q2" },
 ]
 
 export function GET(
@@ -13,8 +13,8 @@ export function GET(
   { params }: { params: { id: string } },
 ) {
   console.log(params.id)
-  const challenge = data.find((item) => item.id === params.id)
-  return NextResponse.json({ data: { params, challenge } }, { status: 200 })
+  const question = data.find((item) => item.id === params.id)
+  return NextResponse.json({ data: { params, question } }, { status: 200 })
 }
 
 export async function PUT(
@@ -23,11 +23,11 @@ export async function PUT(
 ) {
   const body = (await request.json()) as DummyData
   console.log(body)
-  const challengeIndex = data.findIndex((item) => item.id === params.id)
+  const questionIndex = data.findIndex((item) => item.id === params.id)
   data = [
-    ...data.slice(0, challengeIndex),
-    { ...data[challengeIndex], challenge: body.challenge },
-    ...data.slice(challengeIndex + 1),
+    ...data.slice(0, questionIndex),
+    { ...data[questionIndex], question: body.question },
+    ...data.slice(questionIndex + 1),
   ]
   return NextResponse.json({ data: { params, data, body } }, { status: 200 })
 }

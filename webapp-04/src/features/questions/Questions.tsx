@@ -7,7 +7,9 @@ import { type Question } from "./types"
 export default function Questions({ questions }: { questions: Question[] }) {
   async function onSubmit(data: Record<string, string | string[]>) {
     console.log(data)
-    await Survey("http://localhost:3000/api/questions").post(data)
+    await Survey(
+      `http://localhost:${process.env.NEXT_PUBLIC_PORT ?? 3000}/api/questions`,
+    ).post(data)
   }
 
   return (

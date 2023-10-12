@@ -20,7 +20,9 @@ export function MultiSurveyWithContext({
   console.log("Render MultiSurveyWithContext")
 
   // Define a URL for fetching survey questions (presumably from a local API).
-  const url = "http://localhost:3000/api/survey-questions"
+  const url = `http://localhost:${
+    process.env.NEXT_PUBLIC_PORT ?? 3000
+  }/api/questions`
 
   // This component's structure is organized using providers and child components:
   return (
