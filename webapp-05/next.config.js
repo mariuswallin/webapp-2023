@@ -4,6 +4,7 @@ const config = {
   swcMinify: true,
   experimental: {
     serverActions: true,
+    serverComponentsExternalPackages: ["@prisma/client"],
   },
   eslint: {
     ignoreDuringBuilds: !!process.env.CI,
@@ -11,7 +12,6 @@ const config = {
   typescript: {
     ignoreBuildErrors: !!process.env.CI,
   },
-  serverComponentsExternalPackages: ["@prisma/client"],
 }
 
 export default config

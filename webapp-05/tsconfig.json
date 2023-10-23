@@ -49,6 +49,12 @@
       ],
       "@/config": [
         "./src/config/*"
+      ],
+      "@/store": [
+        "./src/store/*"
+      ],
+      "@/tests": [
+        "./src/tests/*"
       ]
     }
   },

@@ -15,6 +15,9 @@
   "include": [
     "**/*.spec.ts",
     "**/*.spec.js",
+    "**/*.test.js",
+    "**/*.test.ts",
+    "**/*.test.tsx",
     "**/*.d.ts"
   ]
 }

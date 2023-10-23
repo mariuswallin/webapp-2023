@@ -2,10 +2,15 @@ import fetch from "cross-fetch"
 
 import "@testing-library/jest-dom/vitest"
 
-import * as matchers from "@testing-library/jest-dom/matchers"
-import { afterAll, afterEach, beforeAll, expect } from "vitest"
+import { cleanup } from "@testing-library/react"
+import { afterAll, afterEach, beforeAll } from "vitest"
 
-import { server } from "./mocks/server"
+import { server } from "./__mocks__/server"
+import resetDb from "./reset-db"
+
+beforeEach(async () => {
+  await resetDb()
+})
 
 global.fetch = fetch
 
@@ -17,6 +22,5 @@ afterAll(() => {
 })
 afterEach(() => {
   server.resetHandlers()
+  cleanup()
 })
-
-expect.extend(matchers)

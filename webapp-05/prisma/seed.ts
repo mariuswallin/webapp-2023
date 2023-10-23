@@ -1,48 +1,48 @@
+import { faker } from "@faker-js/faker"
 import { PrismaClient } from "@prisma/client"
 
-import { generateFakeCartItems, generateFakeProducts } from "@/lib/fakes"
+import { type Item } from "@/types"
 
 const prisma = new PrismaClient()
 
-async function main() {
-  await prisma.cart.deleteMany({})
-  await prisma.product.deleteMany({})
-  await prisma.cartItem.deleteMany({})
-  const cart = await prisma.cart.create({ data: {} })
-
-  const products = generateFakeProducts(100)
-
-  for (const [index, product] of products.entries()) {
-    await prisma.product.create({
-      data: {
-        ...product,
-        status:
-          index % 2 === 0
-            ? "published"
-            : index % 5 === 0
-            ? "featured"
-            : "draft",
-      },
-    })
+const createItem = (): Item => {
+  return {
+    id: faker.string.uuid(),
+    name: faker.lorem.word({
+      length: { min: 5, max: 10 },
+      strategy: "closest",
+    }),
+    slug: faker.lorem.slug(10),
   }
+}
 
-  const cartItems = generateFakeCartItems(3)
+async function main() {
+  await prisma.bucket.create({
+    data: {
+      title: "First bucket",
+      description: "My bucket description",
+      status: "draft",
+    },
+  })
+  const publishedBucket = await prisma.bucket.create({
+    data: {
+      title: "Second bucket",
+      description: "My second bucket description",
+      status: "published",
+    },
+  })
 
-  for (const [index, cartItem] of cartItems.entries()) {
-    await prisma.cartItem.create({
+  const items = Array(10).fill(null).map(createItem)
+
+  for (const item of items) {
+    await prisma.item.create({
       data: {
-        product: {
-          create: {
-            ...cartItem.product,
-            status: index % 2 === 0 ? "published" : "draft",
-          },
-        },
-        cart: {
+        ...item,
+        bucket: {
           connect: {
-            id: cart.id,
+            id: publishedBucket.id,
           },
         },
-        quantity: cartItem.quantity,
       },
     })
   }

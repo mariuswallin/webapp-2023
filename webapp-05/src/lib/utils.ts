@@ -16,25 +16,11 @@ export function formatDate(input: string | number | Date): string {
 }
 
 export const getBaseUrl = () => {
-  if (typeof window !== "undefined") return ""
-  if (process.env.APP_URL) return `https://${process.env.APP_URL}`
-  return `http://localhost:${process.env.NEXT_PUBLIC_PORT ?? 3000}`
-}
-
-export const paginate = <T>(
-  items: T[],
-  options: { page: number; limit: number },
-) => {
-  const { page = 1, limit = 10 } = options
-  const skipFrom = page * limit - limit
-  const total = items.length
-  const data = items.slice(skipFrom, skipFrom + limit)
-
-  return {
-    data,
-    total,
-    page,
-    pages: Math.ceil(total / limit),
-    limit,
-  }
+  if (process.env.APP_URL)
+    return `${process.env.NODE_ENV === "production" ? "https://" : "http://"}${
+      process.env.APP_URL
+    }`
+  return `http://localhost:${
+    process.env.PORT ?? process.env.NEXT_PUBLIC_PORT ?? 3000
+  }`
 }

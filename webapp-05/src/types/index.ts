@@ -1,42 +1,27 @@
-export type Product = {
-  id?: string
-  sku: string
+export type Item = {
+  id: string
   name: string
-  description?: string | null
-  price: number
+  slug: string
+}
+
+export type Bucket = {
+  id: string
+  title: string
+  description: string | null
   status?: string
 }
 
-export type Cart = { id?: string; items?: CartItem<Product>[] }
-
-export type CartItem<T> = {
-  quantity: number
-  product: T
-}
-
-export type Entity<T> = T & { id: string }
+export type WithRelation<T, U> = T & U
 
 export type Data<T> = {
   success: true
-  data: T
+  data: T | null
 }
 
-export type Error = {
+export type ResultError = {
   success: false
   type?: string
   error: string
 }
 
-export type Result<T> = Data<T> | Error
-
-export type QueryParams = {
-  status?: string
-  limit?: string
-  skip?: string
-}
-
-export type WithPagination<T> = {
-  hasMore: boolean
-  current: string
-  data: T
-}
+export type Result<T> = Data<T> | ResultError
