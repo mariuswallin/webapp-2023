@@ -17,9 +17,11 @@ const createItem = (): Item => {
 }
 
 async function main() {
+  await prisma.bucket.deleteMany({})
   await prisma.bucket.create({
     data: {
       title: "First bucket",
+      slug: "first-bucket",
       description: "My bucket description",
       status: "draft",
     },
@@ -27,6 +29,7 @@ async function main() {
   const publishedBucket = await prisma.bucket.create({
     data: {
       title: "Second bucket",
+      slug: "second-bucket",
       description: "My second bucket description",
       status: "published",
     },

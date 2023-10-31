@@ -10,6 +10,7 @@ datasource db {
 model Bucket {
   id          String   @id @default(uuid())
   title       String
+  slug        String   @unique
   description String?
   status      String
   items       Item[]

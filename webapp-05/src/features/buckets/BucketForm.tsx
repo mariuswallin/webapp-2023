@@ -9,10 +9,10 @@ import createId from "@/lib/id"
 import { type Bucket, type Result } from "@/types"
 import useFetch from "./useFetch"
 
-export default function ProductForm({
+export default function BucketForm({
   initialData,
 }: {
-  initialData: Bucket | null
+  initialData?: Bucket | null
 }) {
   const { run, error, isError, isLoading, data, setError } = useFetch()
   const validForm = (form: Bucket) => {
@@ -21,6 +21,7 @@ export default function ProductForm({
 
   const [form, setForm] = useState<Bucket>({
     id: createId(),
+    slug: "",
     title: "",
     description: "",
     status: "draft",
@@ -47,16 +48,17 @@ export default function ProductForm({
       return
     }
     const result = await run<Result<Bucket>>(url, method, {
-      body: JSON.stringify(form),
+      body: JSON.stringify({
+        ...form,
+        slug: form.title.trim().toLowerCase().replaceAll(" ", "-"),
+      }),
       headers: {
         "Content-Type": "application/json",
       },
     })
 
     if (result?.success) {
-      setTimeout(() => {
-        router.push(`/buckets/${result.data?.id}`)
-      }, 2000)
+      router.push(`/buckets/${result.data.slug}`)
     }
   }
 

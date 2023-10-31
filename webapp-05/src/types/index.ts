@@ -7,6 +7,7 @@ export type Item = {
 export type Bucket = {
   id: string
   title: string
+  slug: string
   description: string | null
   status?: string
 }
@@ -15,7 +16,7 @@ export type WithRelation<T, U> = T & U
 
 export type Data<T> = {
   success: true
-  data: T | null
+  data: T
 }
 
 export type ResultError = {

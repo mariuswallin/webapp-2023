@@ -9,11 +9,11 @@ import useFetch from "./useFetch"
 const url = "/api/buckets"
 
 export default function BucketActions() {
-  const { id } = useBucketContext()
+  const { slug } = useBucketContext()
   const { run, isLoading, isError, error } = useFetch()
 
   const handleRemove = async () => {
-    await run(`${url}/${id}`, "delete")
+    await run(`${url}/${slug}`, "delete")
   }
 
   if (isError) {
@@ -23,19 +23,19 @@ export default function BucketActions() {
   return (
     <div className="flex gap-2">
       <Link
-        href={`/buckets/${id}`}
+        href={`/buckets/${slug}`}
         className="rounded bg-blue-600 p-2 text-sm text-white"
       >
         <Icons.eye className="h-4 w-4" />
       </Link>
       <Link
-        href={`/buckets/${id}/edit`}
+        href={`/buckets/${slug}/edit`}
         className="rounded bg-yellow-300 p-2 text-sm text-black"
       >
         <Icons.pen className="h-4 w-4" />
       </Link>
       <Link
-        href={`/buckets/${id}/items`}
+        href={`/buckets/${slug}/items`}
         className="rounded bg-purple-600 p-2 text-sm text-white"
       >
         <Icons.layers className="h-4 w-4" />

@@ -1,11 +1,11 @@
 import prisma from "@/lib/prisma"
 
 export default async function BucketItemsPage(props: {
-  params: { id: string }
+  params: { slug: string }
 }) {
-  const id = props.params.id
+  const slug = props.params.slug
   const bucket = await prisma.bucket.findUnique({
-    where: { id },
+    where: { slug },
     include: { items: true },
   })
   return (
